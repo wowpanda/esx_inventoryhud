@@ -15,6 +15,8 @@ window.addEventListener("message", function (event) {
             $(".info-div").hide();
         } else if (type === "player") {
             $(".info-div").show();
+        } else if (type === "society") {
+            $(".info-div").hide();
         }
 
         $(".ui").fadeIn();
@@ -294,6 +296,12 @@ $(document).ready(function () {
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
+            } else if (type === "society" && itemInventory === "second") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/TakeFromSociety", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
             }
         }
     });
@@ -318,6 +326,12 @@ $(document).ready(function () {
             } else if (type === "player" && itemInventory === "main") {
                 disableInventory(500);
                 $.post("http://esx_inventoryhud/PutIntoPlayer", JSON.stringify({
+                    item: itemData,
+                    number: parseInt($("#count").val())
+                }));
+            } else if (type === "society" && itemInventory === "main") {
+                disableInventory(500);
+                $.post("http://esx_inventoryhud/PutIntoSociety", JSON.stringify({
                     item: itemData,
                     number: parseInt($("#count").val())
                 }));
